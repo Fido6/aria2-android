@@ -131,6 +131,13 @@ do
 
   LIBS_TARGET_DIR=$LIBS_DIR/$target
 
+  sed -i 's/1, 16,/1, 512,/g' src/OptionHandlerFactory.cc
+  sed -i 's/"20M", 1_m, 1_g/"2K", 1_k, 1_g/g' src/OptionHandlerFactory.cc
+  sed -i 's/"1M", 1_m, 1_g/"2K", 1_k, 1_g/g' src/OptionHandlerFactory.cc
+  sed -i 's/"0", 0, 600/"2", 0, 600/g' src/OptionHandlerFactory.cc
+  sed -i 's/"5", 1, -1/"10", 1, -1/g' src/OptionHandlerFactory.cc
+  sed -i 's/static const int DEFAULT_MAX_PEERS = 55/static const int DEFAULT_MAX_PEERS = 100/g' src/BtRuntime.h
+  sed -i 's/static const int DEFAULT_MIN_PEERS = 40/static const int DEFAULT_MIN_PEERS = 75/g' src/BtRuntime.h
   ./configure \
     --host="$host" \
     --build=`dpkg-architecture -qDEB_BUILD_GNU_TYPE` \
